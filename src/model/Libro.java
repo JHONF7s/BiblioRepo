@@ -22,7 +22,7 @@ public class Libro {
 
     public void cambiarEstado(int estado){
         this.estado = estado;
-        System.out.println("Cambiando estado del libro a : " + estado)
+        System.out.println("Cambiando estado del libro a : " + estado);
     }
 
 
