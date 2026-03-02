@@ -33,6 +33,15 @@ public class LibroController {
         return false;
     }
 
+    public Libro buscarLibro(int idLibro){
+        for (Libro libros : this.listaLibros){
+            if (libros.getId() == idLibro){
+                return libros;
+            }
+        }
+        return null;
+    }
+
     public boolean modificarLibro(){
 
         return false;
