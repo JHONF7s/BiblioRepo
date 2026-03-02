@@ -1,27 +1,28 @@
 package model;
 
 public class Cliente {
-    private int nombre;
+    private int cedula;
     private String nombre; 
     private int telefono;
     private String direccion;
     private String estado;
 
-    public Cliente(int nombre, String nombre, int telefono, String direccion, String estado) {
-        this.nombre = nombre;
+    public Cliente(int cedula, String nombre, int telefono, String direccion, String estado) {
+        this.cedula = cedula;
         this.nombre = nombre;
         this.telefono = telefono;
         this.direccion = direccion;
         this.estado = estado;
     }
 
-    public int getNombre() {
+    public int getCedula() {
+        return cedula;
+    }
+
+    public String getNombre() {
         return nombre;
     }
     
-    public String getNombreString() {
-        return nombre;
-    }
 
     public int getTelefono() {
         return telefono;
@@ -35,8 +36,8 @@ public class Cliente {
         return estado;
     }
 
-    public void setNombre(int nombre) {
-        this.nombre = nombre;
+    public void setCedula(int cedula) {
+        this.cedula = cedula;
     }
     public void setNombre(String nombre) {
         this.nombre = nombre;
@@ -52,4 +53,3 @@ public class Cliente {
     }
 }
 
-// farfannnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
