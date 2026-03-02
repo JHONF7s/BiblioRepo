@@ -21,7 +21,14 @@ public class LibroController {
         return true;
     }
 
-    public boolean eliminarLibro(){
+    public boolean eliminarLibro(int idLibro){
+
+        for (int i = 0; i < listaLibros.size(); i++){
+            if(((Libro)this.listaLibros.get(i)).getId() == idLibro){
+                this.listaLibros.remove(i);
+                return true;
+            }
+        }
 
         return false;
     }
