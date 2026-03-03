@@ -11,13 +11,13 @@ public class ClienteController {
         this.clientes = new ArrayList<>();
     }
 
-    public boolean agregarCliente(int cedula){
+    public boolean agregarCliente(int cedula, String nombre, int telefono, String direccion){
         for(Cliente cliente : clientes){
             if(cliente.getCedula() == cedula){
                 return false;
             }
         }
-        return clientes.add(new Cliente(cedula));
+        return clientes.add(new Cliente(cedula, nombre, telefono, direccion));
     }
 
     public boolean eliminarCliente(int cedula){
@@ -39,7 +39,7 @@ public class ClienteController {
             nuevoCliente.setDireccion(cliente.getDireccion());
             return true;
         }
-        
+        return false;
     }
 
     public Cliente buscarCliente(int cedula){

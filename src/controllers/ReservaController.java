@@ -30,8 +30,14 @@ public class ReservaController {
         return false;
     }
 
-    public boolean modificarReserva(Reserva reserva){
-
+    public boolean modificarReserva(Reserva reservaNueva){
+        Reserva reserva = buscarReserva(reservaNueva.getId());
+        if (reserva != null){
+            reserva.setCliente(reservaNueva.getCliente());
+            reserva.setLibro(reservaNueva.getLibro());
+            reserva.setDate(reservaNueva.getDate());
+            return true;
+        }
         return false;
     }
 
