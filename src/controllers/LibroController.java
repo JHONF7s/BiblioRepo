@@ -42,13 +42,15 @@ public class LibroController {
         return null;
     }
 
-    public boolean modificarLibro(){
-
+    public boolean modificarLibro(Libro libro){
+        for (int i = 0; i < listaLibros.size(); i++){
+            if (listaLibros.get(i).getId() == libro.getId()){
+                listaLibros.set(i, libro);
+                return true;
+            }
+        }
         return false;
-    }
 
-    public Libro buscarLibro(){
-        return null;
     }
 }
 
