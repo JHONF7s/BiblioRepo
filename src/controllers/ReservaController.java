@@ -1,5 +1,7 @@
 package controllers;
 
+import model.Cliente;
+import model.Libro;
 import model.Reserva;
 import java.util.ArrayList;
 
@@ -10,21 +12,33 @@ public class ReservaController {
         this.reservas = new ArrayList<>();
     }
 
-    public boolean agregarReserva(){
+    public boolean agregarReserva(Cliente cliente, Libro libro){
+        if (libro.getEstado() == 0 && cliente.getEstado() == 0){
+            Reserva reserva = new Reserva(cliente, libro);
+            return reservas.add(reserva);
+        }
         return false;
     }
 
-    public boolean eliminarReserva(){
+    public boolean eliminarReserva(int id){
+        Reserva reserva = buscarReserva(id);
+        if (reserva != null){
+            reserva.cancelar();
+            reservas.remove(reserva);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean modificarReserva(Reserva reserva){
 
         return false;
     }
 
-    public boolean modificarReserva(){
-
-        return false;
-    }
-
-    public Reserva buscarReserva(){
+    public Reserva buscarReserva(int id){
+        for (Reserva reserva: reservas)
+            if (reserva.getId() == id)
+                return reserva;
         return null;
     }
 }

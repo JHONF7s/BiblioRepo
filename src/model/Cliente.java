@@ -5,14 +5,14 @@ public class Cliente {
     private String nombre; 
     private int telefono;
     private String direccion;
-    private String estado;
+    private int estado;
 
-    public Cliente(int cedula, String nombre, int telefono, String direccion, String estado) {
+    public Cliente(int cedula, String nombre, int telefono, String direccion) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.telefono = telefono;
         this.direccion = direccion;
-        this.estado = estado;
+        this.estado = 0; // 0 libre | 1 con prestamo
     }
 
     public int getCedula() {
@@ -32,7 +32,7 @@ public class Cliente {
         return direccion;
     }
 
-    public String getEstado() {
+    public int getEstado() {
         return estado;
     }
 
@@ -48,7 +48,7 @@ public class Cliente {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
-    public void setEstado(String estado) {
+    public void setEstado(int estado) {
         this.estado = estado;
     }
 }
