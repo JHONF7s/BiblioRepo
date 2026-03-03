@@ -26,6 +26,8 @@ public class Libro {
     }
 
 
+
+
     public int getId() {
         return id;
     }
