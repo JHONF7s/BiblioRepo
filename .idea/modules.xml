@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/BiblioRepo.iml" filepath="$PROJECT_DIR$/BiblioRepo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/BiblioRepo.iml" filepath="$PROJECT_DIR$/src/BiblioRepo.iml" />
     </modules>
   </component>
 </project>
