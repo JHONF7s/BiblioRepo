@@ -1,19 +1,39 @@
 
 package frames;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import model.Admin;
+import java.awt.Color;
 /**
  *
  * @author jhnf
  */
 public class LoginFrame extends javax.swing.JFrame {
-    
+    private int mouseX;
+    private int mouseY;
+    private Admin admin;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(LoginFrame.class.getName());
 
     /**
      * Creates new form LoginFrame
      */
-    public LoginFrame() {
+    public LoginFrame(Admin admin) {
         initComponents();
+        this.admin = admin;
+        renderImage();
+        setData();
+        setLocationRelativeTo(this);        
+    }
+    
+    private void renderImage(){
+        Icon icon = new ImageIcon(new ImageIcon(getClass().getResource("/resources/images/50426.jpg")).getImage().getScaledInstance(lblImage.getWidth(), lblImage.getHeight(), 4));
+        lblImage.setIcon(icon);
+    }
+    
+    private void setData(){
+        txtName.setText(admin.getName());
+        txtId.setText(String.valueOf(admin.getId()));        
     }
 
     /**
@@ -25,47 +45,574 @@ public class LoginFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        background1 = new javax.swing.JPanel();
+        PanelImage1 = new javax.swing.JPanel();
+        lblImage = new javax.swing.JLabel();
+        logPanel1 = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jPanel7 = new javax.swing.JPanel();
+        btnLibros = new javax.swing.JPanel();
+        txtLibros = new javax.swing.JLabel();
+        btnReservas = new javax.swing.JPanel();
+        txtReservas = new javax.swing.JLabel();
+        headBar = new javax.swing.JPanel();
+        btnExit1 = new javax.swing.JPanel();
+        txtExit1 = new javax.swing.JLabel();
+        btnExitSesion = new javax.swing.JPanel();
+        txtExitSesion = new javax.swing.JLabel();
+        jPanel13 = new javax.swing.JPanel();
+        txtName = new javax.swing.JLabel();
+        jPanel14 = new javax.swing.JPanel();
+        txtId = new javax.swing.JLabel();
+        jPanel15 = new javax.swing.JPanel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
+
+        background1.setBackground(new java.awt.Color(255, 255, 255));
+        background1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        javax.swing.GroupLayout PanelImage1Layout = new javax.swing.GroupLayout(PanelImage1);
+        PanelImage1.setLayout(PanelImage1Layout);
+        PanelImage1Layout.setHorizontalGroup(
+            PanelImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblImage, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
+        );
+        PanelImage1Layout.setVerticalGroup(
+            PanelImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblImage, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
+        );
+
+        background1.add(PanelImage1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 440, 410));
+
+        logPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel6.setBackground(new java.awt.Color(51, 102, 255));
+
+        jLabel6.setFont(new java.awt.Font("Liberation Sans", 0, 26)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("ADMIN");
+
+        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 8, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(141, 141, 141)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(237, Short.MAX_VALUE))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
+        );
+
+        btnLibros.setBackground(new java.awt.Color(51, 103, 255));
+        btnLibros.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnLibros.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnLibrosMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnLibrosMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnLibrosMousePressed(evt);
+            }
+        });
+
+        txtLibros.setFont(new java.awt.Font("Liberation Sans", 0, 16)); // NOI18N
+        txtLibros.setForeground(new java.awt.Color(255, 255, 255));
+        txtLibros.setText("Registro de Libros");
+        txtLibros.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                txtLibrosMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                txtLibrosMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtLibrosMousePressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout btnLibrosLayout = new javax.swing.GroupLayout(btnLibros);
+        btnLibros.setLayout(btnLibrosLayout);
+        btnLibrosLayout.setHorizontalGroup(
+            btnLibrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnLibrosLayout.createSequentialGroup()
+                .addContainerGap(29, Short.MAX_VALUE)
+                .addComponent(txtLibros, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
+        );
+        btnLibrosLayout.setVerticalGroup(
+            btnLibrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnLibrosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txtLibros, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        btnReservas.setBackground(new java.awt.Color(51, 153, 255));
+        btnReservas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnReservas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnReservasMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnReservasMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnReservasMousePressed(evt);
+            }
+        });
+
+        txtReservas.setFont(new java.awt.Font("Liberation Sans", 0, 16)); // NOI18N
+        txtReservas.setForeground(new java.awt.Color(255, 255, 255));
+        txtReservas.setText("Registro de Reservas");
+        txtReservas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                txtReservasMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                txtReservasMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtReservasMousePressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout btnReservasLayout = new javax.swing.GroupLayout(btnReservas);
+        btnReservas.setLayout(btnReservasLayout);
+        btnReservasLayout.setHorizontalGroup(
+            btnReservasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnReservasLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(txtReservas, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(14, Short.MAX_VALUE))
+        );
+        btnReservasLayout.setVerticalGroup(
+            btnReservasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(txtReservas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout logPanel1Layout = new javax.swing.GroupLayout(logPanel1);
+        logPanel1.setLayout(logPanel1Layout);
+        logPanel1Layout.setHorizontalGroup(
+            logPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, logPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(logPanel1Layout.createSequentialGroup()
+                .addGap(87, 87, 87)
+                .addGroup(logPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnReservas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLibros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        logPanel1Layout.setVerticalGroup(
+            logPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(logPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                .addComponent(btnLibros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(71, 71, 71)
+                .addComponent(btnReservas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62))
+        );
+
+        background1.add(logPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 40, 360, 410));
+
+        headBar.setBackground(new java.awt.Color(204, 204, 204));
+        headBar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                headBarMouseDragged(evt);
+            }
+        });
+        headBar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                headBarMousePressed(evt);
+            }
+        });
+
+        btnExit1.setBackground(new java.awt.Color(255, 255, 255));
+        btnExit1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnExit1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnExit1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnExit1MouseExited(evt);
+            }
+        });
+
+        txtExit1.setFont(new java.awt.Font("Liberation Sans", 0, 16)); // NOI18N
+        txtExit1.setForeground(new java.awt.Color(0, 0, 0));
+        txtExit1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtExit1.setText("X");
+        txtExit1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtExit1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                txtExit1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                txtExit1MouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout btnExit1Layout = new javax.swing.GroupLayout(btnExit1);
+        btnExit1.setLayout(btnExit1Layout);
+        btnExit1Layout.setHorizontalGroup(
+            btnExit1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnExit1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txtExit1, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        btnExit1Layout.setVerticalGroup(
+            btnExit1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnExit1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txtExit1, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        btnExitSesion.setBackground(new java.awt.Color(255, 255, 255));
+        btnExitSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnExitSesion.setPreferredSize(new java.awt.Dimension(61, 40));
+        btnExitSesion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnExitSesionMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnExitSesionMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnExitSesionMouseExited(evt);
+            }
+        });
+
+        txtExitSesion.setFont(new java.awt.Font("Liberation Sans", 0, 16)); // NOI18N
+        txtExitSesion.setForeground(new java.awt.Color(0, 0, 0));
+        txtExitSesion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtExitSesion.setText("Cerrar sesion");
+        txtExitSesion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtExitSesionMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                txtExitSesionMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                txtExitSesionMouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout btnExitSesionLayout = new javax.swing.GroupLayout(btnExitSesion);
+        btnExitSesion.setLayout(btnExitSesionLayout);
+        btnExitSesionLayout.setHorizontalGroup(
+            btnExitSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnExitSesionLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txtExitSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        btnExitSesionLayout.setVerticalGroup(
+            btnExitSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnExitSesionLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txtExitSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout headBarLayout = new javax.swing.GroupLayout(headBar);
+        headBar.setLayout(headBarLayout);
+        headBarLayout.setHorizontalGroup(
+            headBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(headBarLayout.createSequentialGroup()
+                .addComponent(btnExit1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnExitSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 649, Short.MAX_VALUE))
+        );
+        headBarLayout.setVerticalGroup(
+            headBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnExit1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnExitSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        background1.add(headBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 40));
+
+        jPanel13.setBackground(new java.awt.Color(51, 102, 255));
+
+        txtName.setFont(new java.awt.Font("Liberation Sans", 0, 12)); // NOI18N
+        txtName.setForeground(new java.awt.Color(255, 255, 255));
+        txtName.setText("Nombre");
+
+        jPanel14.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
+        jPanel14.setLayout(jPanel14Layout);
+        jPanel14Layout.setHorizontalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 76, Short.MAX_VALUE)
+        );
+        jPanel14Layout.setVerticalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        txtId.setFont(new java.awt.Font("Liberation Sans", 0, 12)); // NOI18N
+        txtId.setForeground(new java.awt.Color(255, 255, 255));
+        txtId.setText("ID");
+
+        jPanel15.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
+        jPanel15.setLayout(jPanel15Layout);
+        jPanel15Layout.setHorizontalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 76, Short.MAX_VALUE)
+        );
+        jPanel15Layout.setVerticalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 8, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
+        jPanel13.setLayout(jPanel13Layout);
+        jPanel13Layout.setHorizontalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(33, 33, 33)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(573, Short.MAX_VALUE))
+        );
+        jPanel13Layout.setVerticalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        background1.add(jPanel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 450, 800, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(background1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(background1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void txtLibrosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtLibrosMouseEntered
+        // TODO add your handling code here:
+        btnLibros.setBackground(Color.black);
+    }//GEN-LAST:event_txtLibrosMouseEntered
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new LoginFrame().setVisible(true));
-    }
+    private void txtLibrosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtLibrosMouseExited
+        // TODO add your handling code here:
+        btnLibros.setBackground(new Color(51, 103, 255));
+    }//GEN-LAST:event_txtLibrosMouseExited
 
+    private void txtLibrosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtLibrosMousePressed
+        // TODO add your handling code here:
+        this.btnLibrosMousePressed(evt);
+    }//GEN-LAST:event_txtLibrosMousePressed
+
+    private void btnLibrosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLibrosMouseEntered
+        // TODO add your handling code here:
+        btnLibros.setBackground(Color.black);
+    }//GEN-LAST:event_btnLibrosMouseEntered
+
+    private void btnLibrosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLibrosMouseExited
+        // TODO add your handling code here:
+        btnLibros.setBackground(new Color(51, 103, 255));
+    }//GEN-LAST:event_btnLibrosMouseExited
+
+    private void btnLibrosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLibrosMousePressed
+        // TODO add your handling code here:
+        LibrosFrame frame = new LibrosFrame(admin);
+        frame.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnLibrosMousePressed
+
+    private void txtReservasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtReservasMouseEntered
+        // TODO add your handling code here:
+        btnReservas.setBackground(Color.black);
+    }//GEN-LAST:event_txtReservasMouseEntered
+
+    private void txtReservasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtReservasMouseExited
+        // TODO add your handling code here:
+        btnReservas.setBackground(new Color(51, 153, 255));
+    }//GEN-LAST:event_txtReservasMouseExited
+
+    private void txtReservasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtReservasMousePressed
+        // TODO add your handling code here:
+        this.btnReservasMousePressed(evt);
+    }//GEN-LAST:event_txtReservasMousePressed
+
+    private void btnReservasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReservasMouseEntered
+        // TODO add your handling code here:
+        btnReservas.setBackground(Color.black);
+    }//GEN-LAST:event_btnReservasMouseEntered
+
+    private void btnReservasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReservasMouseExited
+        // TODO add your handling code here:
+        btnReservas.setBackground(new Color(51, 153, 255));
+    }//GEN-LAST:event_btnReservasMouseExited
+
+    private void btnReservasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReservasMousePressed
+        // TODO add your handling code here:
+        ReservasFrame frame = new ReservasFrame(admin);
+        frame.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnReservasMousePressed
+
+    private void txtExit1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtExit1MouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_txtExit1MouseClicked
+
+    private void txtExit1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtExit1MouseEntered
+        // TODO add your handling code here:
+        btnExit1.setBackground(Color.red);
+        txtExit1.setForeground(Color.white);
+    }//GEN-LAST:event_txtExit1MouseEntered
+
+    private void txtExit1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtExit1MouseExited
+        // TODO add your handling code here:
+        btnExit1.setBackground(Color.white);
+        txtExit1.setForeground(Color.black);
+    }//GEN-LAST:event_txtExit1MouseExited
+
+    private void btnExit1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExit1MouseEntered
+        // TODO add your handling code here:
+        btnExit1.setBackground(Color.red);
+        txtExit1.setForeground(Color.white);
+    }//GEN-LAST:event_btnExit1MouseEntered
+
+    private void btnExit1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExit1MouseExited
+        // TODO add your handling code here:
+        btnExit1.setBackground(Color.white);
+        txtExit1.setForeground(Color.black);
+    }//GEN-LAST:event_btnExit1MouseExited
+
+    private void txtExitSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtExitSesionMouseClicked
+        // TODO add your handling code here:
+        btnExitSesionMouseClicked(evt);
+    }//GEN-LAST:event_txtExitSesionMouseClicked
+
+    private void txtExitSesionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtExitSesionMouseEntered
+        // TODO add your handling code here:
+        btnExitSesionMouseEntered(evt);
+    }//GEN-LAST:event_txtExitSesionMouseEntered
+
+    private void txtExitSesionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtExitSesionMouseExited
+        // TODO add your handling code here:
+        btnExitSesionMouseExited(evt);
+    }//GEN-LAST:event_txtExitSesionMouseExited
+
+    private void btnExitSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitSesionMouseClicked
+        // TODO add your handling code here:
+        AdminFrame frame = new AdminFrame();
+        frame.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnExitSesionMouseClicked
+
+    private void btnExitSesionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitSesionMouseEntered
+        // TODO add your handling code here:
+        btnExitSesion.setBackground(Color.black);
+        txtExitSesion.setForeground(Color.white);
+    }//GEN-LAST:event_btnExitSesionMouseEntered
+
+    private void btnExitSesionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitSesionMouseExited
+        // TODO add your handling code here:
+        btnExitSesion.setBackground(Color.white);
+        txtExitSesion.setForeground(Color.black);
+    }//GEN-LAST:event_btnExitSesionMouseExited
+
+    private void headBarMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_headBarMouseDragged
+        // TODO add your handling code here:
+        int x = evt.getXOnScreen();
+        int y = evt.getYOnScreen();
+
+        this.setLocation(x - mouseX, y - mouseY);
+    }//GEN-LAST:event_headBarMouseDragged
+
+    private void headBarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_headBarMousePressed
+        // TODO add your handling code here:
+        mouseX = evt.getX();
+        mouseY = evt.getY();
+    }//GEN-LAST:event_headBarMousePressed
+
+
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel PanelImage1;
+    private javax.swing.JPanel background1;
+    private javax.swing.JPanel btnExit1;
+    private javax.swing.JPanel btnExitSesion;
+    private javax.swing.JPanel btnLibros;
+    private javax.swing.JPanel btnReservas;
+    private javax.swing.JPanel headBar;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JLabel lblImage;
+    private javax.swing.JPanel logPanel1;
+    private javax.swing.JLabel txtExit1;
+    private javax.swing.JLabel txtExitSesion;
+    private javax.swing.JLabel txtId;
+    private javax.swing.JLabel txtLibros;
+    private javax.swing.JLabel txtName;
+    private javax.swing.JLabel txtReservas;
     // End of variables declaration//GEN-END:variables
 }
