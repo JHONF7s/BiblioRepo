@@ -1,19 +1,22 @@
 
 package controllers;
 
+import model.Admin;
+
 
 /**
  *
  * @author jhnf
  */
 public class LoginController {
-    private final String password = "123";
-    private final int id = 123;
 
     public LoginController() {
     }
  
-    public boolean login(int id, String password){
-        return (id == this.id && password.equals(this.password));            
+    public Admin login(int id, String password){
+        Admin admin = new Admin();
+        if (admin.getId() == id && admin.getPassword().equals(password))
+            return admin;     
+        return null;
     } 
 }

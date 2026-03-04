@@ -6,7 +6,7 @@ import controllers.LoginController;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-
+import model.Admin;
 
 /**
  *
@@ -33,6 +33,7 @@ public class AdminFrame extends javax.swing.JFrame {
         Icon icon = new ImageIcon(new ImageIcon(getClass().getResource("/resources/images/inicio.png")).getImage().getScaledInstance(lblImage.getWidth(), lblImage.getHeight(), 4));
         lblImage.setIcon(icon);
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -383,9 +384,9 @@ public class AdminFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "id invalido");
             return;
         }
-        
-        if (controller.login(id, password))
-            renderAdminFrame();
+        Admin admin = controller.login(id, password);
+        if (admin != null)
+            renderAdminFrame(admin);
         else JOptionPane.showMessageDialog(null, "Datos incorrectos");                                
     }//GEN-LAST:event_btnLogin1MousePressed
 
@@ -432,8 +433,8 @@ public class AdminFrame extends javax.swing.JFrame {
         mouseY = evt.getY();
     }//GEN-LAST:event_headBarMousePressed
     
-    private void renderAdminFrame(){
-        LoginFrame loginFrame = new LoginFrame();
+    private void renderAdminFrame(Admin admin){
+        LoginFrame loginFrame = new LoginFrame(admin);
         loginFrame.setVisible(true);
         this.dispose();
     }
