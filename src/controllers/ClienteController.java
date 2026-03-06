@@ -1,7 +1,7 @@
 package controllers;
 
 import model.Cliente;
-
+import resources.data.Persistencia;
 import java.util.ArrayList;
 
 public class ClienteController {
@@ -9,6 +9,7 @@ public class ClienteController {
 
     public ClienteController() {
         this.clientes = new ArrayList<>();
+        clientes = (ArrayList<Cliente>) Persistencia.getInstancia().getClientes();
     }
 
     public boolean agregarCliente(int cedula, String nombre, int telefono, String direccion){
@@ -17,14 +18,17 @@ public class ClienteController {
                 return false;
             }
         }
-        return clientes.add(new Cliente(cedula, nombre, telefono, direccion));
+        boolean respuesta = clientes.add(new Cliente(cedula, nombre, telefono, direccion));
+        Persistencia.getInstancia().writeClientes();
+        return respuesta;
     }
 
     public boolean eliminarCliente(int cedula){
         for(Cliente cliente : clientes){
             if(cliente.getCedula() == cedula){
-                clientes.remove(cliente);
-                return true;
+                boolean respuesta = clientes.remove(cliente);
+                Persistencia.getInstancia().writeClientes();
+                return respuesta;
             }
         }
         return false;
@@ -37,6 +41,7 @@ public class ClienteController {
             nuevoCliente.setNombre(cliente.getNombre());
             nuevoCliente.setTelefono(cliente.getTelefono());
             nuevoCliente.setDireccion(cliente.getDireccion());
+            Persistencia.getInstancia().writeClientes();
             return true;
         }
         return false;

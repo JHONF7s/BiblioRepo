@@ -27,12 +27,14 @@ public class AdminFrame extends javax.swing.JFrame {
         this.renderImage();
         this.setLocationRelativeTo(this);
         this.controller = new LoginController();
+        
     }
     
     private void renderImage(){
         Icon icon = new ImageIcon(new ImageIcon(getClass().getResource("/resources/images/inicio.png")).getImage().getScaledInstance(lblImage.getWidth(), lblImage.getHeight(), 4));
         lblImage.setIcon(icon);
     }
+    
     
 
     /**
