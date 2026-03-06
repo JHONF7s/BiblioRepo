@@ -3,12 +3,14 @@ package controllers;
 import model.Libro;
 
 import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import resources.data.Persistencia;
 
 public class LibroController {
     private ArrayList<Libro> listaLibros;
 
     public LibroController() {
-        this.listaLibros = new ArrayList<>();
+        this.listaLibros = Persistencia.getInstancia().getLibros();
     }
 
     public boolean agregarLibro(Libro libro){
@@ -17,8 +19,9 @@ public class LibroController {
                 return false;
             }
         }
-        this.listaLibros.add(libro);
-        return true;
+        boolean respuesta = this.listaLibros.add(libro);
+        Persistencia.getInstancia().writeLibros();
+        return respuesta;
     }
 
     public boolean eliminarLibro(int idLibro){
@@ -26,6 +29,7 @@ public class LibroController {
         for (int i = 0; i < listaLibros.size(); i++){
             if(((Libro)this.listaLibros.get(i)).getId() == idLibro){
                 this.listaLibros.remove(i);
+                Persistencia.getInstancia().writeLibros();
                 return true;
             }
         }
@@ -46,11 +50,29 @@ public class LibroController {
         for (int i = 0; i < listaLibros.size(); i++){
             if (listaLibros.get(i).getId() == libro.getId()){
                 listaLibros.set(i, libro);
+                Persistencia.getInstancia().writeLibros();
                 return true;
             }
         }
         return false;
 
+    }
+    
+     public DefaultTableModel populateTable(){
+        String[] columns = {"ID", "Titulo", "Autor", "Estado"};                
+        DefaultTableModel table = new DefaultTableModel(columns, 0);                           
+        
+        for (Libro libro: listaLibros){
+            
+            Object[] row = {
+                libro.getId(),
+                libro.getTitulo(),
+                libro.getAutor(),
+                libro.getEstado()
+            };
+            table.addRow(row);
+        }
+        return table;        
     }
 }
 
