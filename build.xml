@@ -24,8 +24,8 @@
       -post-compile-single:      called after javac compilation of single file
       -pre-compile-test:         called before javac compilation of JUnit tests
       -post-compile-test:        called after javac compilation of JUnit tests
-      -pre-compile-test-single:  called before javac compilation of single JUnit test
-      -post-compile-test-single: called after javac compilation of single JUunit test
+      -pre-compile-test-single:  called before javac compilation of single file
+      -post-compile-test-single: called after javac compilation of single file
       -pre-jar:                  called before JAR building
       -post-jar:                 called after JAR building
       -post-clean:               called after cleaning build products
@@ -43,31 +43,40 @@
     For list of available properties check the imported 
     nbproject/build-impl.xml file. 
 
-
     Another way to customize the build is by overriding existing main targets.
-    The targets of interest are: 
+    The overriding target will be called instead of the imported target.
 
-      -init-macrodef-javac:     defines macro for javac compilation
-      -init-macrodef-junit:     defines macro for junit execution
-      -init-macrodef-debug:     defines macro for class debugging
-      -init-macrodef-java:      defines macro for class execution
-      -do-jar:                  JAR building
-      run:                      execution of project 
-      -javadoc-build:           Javadoc generation
-      test-report:              JUnit report generation
+    The overriding target should be placed in the main build file.
 
-    An example of overriding the target for project execution could look like this:
+    For example to override the target for building a JAR file (the main target
+    for this type of project) you can use:
 
-        <target name="run" depends="BiblioRepo-impl.jar">
-            <exec dir="bin" executable="launcher.exe">
-                <arg file="${dist.jar}"/>
-            </exec>
+        <target name="jar" depends="BiblioRepo-init">
+            <echo message="Building JAR file"/>
+            <jar jarfile="${dist.jar}" includes="**/*.class">
+                <fileset dir="${build.classes.dir}"/>
+                <fileset dir="${src.dir}" excludes="**/*.java"/>
+            </jar>
         </target>
 
-    Notice that the overridden target depends on the jar target and not only on 
-    the compile target as the regular run target does. Again, for a list of available 
-    properties which you can use, check the target you are overriding in the
-    nbproject/build-impl.xml file. 
+    You can also use properties defined in the imported file. These properties 
+    are considered private and can be overridden only if make sense.
 
+    Example of overriding the target for testing:
+
+        <target name="test" depends="BiblioRepo-init">
+            <junit haltonfailure="true" fork="true">
+                <formatter type="brief" usefile="false"/>
+                <test name="${test.class}"/>
+                <classpath>
+                    <path path="${run.test.classpath}"/>
+                </classpath>
+            </junit>
+        </target>
+
+    Notice that overriding properties like ${src.dir} is not advised. You can
+    override ant properties defined in the nbproject/project.properties file instead.
     -->
+    <!-- Agregar propiedad para AbsoluteLayout.jar -->
+    <property name="libs.AbsoluteLayout.classpath" value="lib/AbsoluteLayout.jar"/>
 </project>

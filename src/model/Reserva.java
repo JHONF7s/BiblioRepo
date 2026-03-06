@@ -2,8 +2,9 @@ package model;
 import model.Cliente;
 
 import java.time.LocalDateTime;
+import java.io.Serializable;
 
-public class Reserva {
+public class Reserva implements Serializable {
     private int id;
     private Cliente cliente;
     private Libro libro;
