@@ -16,7 +16,7 @@ public class ReservaController {
 
     public boolean agregarReserva(Cliente cliente, Libro libro){
         if (libro == null) return false;
-        
+
         if (libro.getEstado() == 0 && cliente.getEstado() == 0){
             Reserva reserva = new Reserva(cliente, libro);
             boolean respuesta = reservas.add(reserva);
@@ -55,13 +55,12 @@ public class ReservaController {
                 return reserva;
         return null;
     }
-    
+
     public DefaultTableModel populateTable(){
-        String[] columns = {"ID", "Cliente", "Libro", "Date"};                
-        DefaultTableModel table = new DefaultTableModel(columns, 0);                           
-        
+        String[] columns = {"ID", "Cliente", "Libro", "Date"};
+        DefaultTableModel table = new DefaultTableModel(columns, 0);
         for (Reserva reserva: reservas){
-            
+
             Object[] row = {
                 reserva.getId(),
                 reserva.getCliente().getCedula(),
@@ -69,6 +68,6 @@ public class ReservaController {
             };
             table.addRow(row);
         }
-        return table;        
+        return table;
     }
 }

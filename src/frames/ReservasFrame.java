@@ -740,37 +740,31 @@ public class ReservasFrame extends javax.swing.JFrame {
     private void btnRegisterMachineMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegisterMachineMousePressed
         // TODO add your handling code here:
         int idLibro;
-        
-        int cedula;
+        String cedula = txtIdCliente.getText();
         String nombre = txtNombre.getText();
-        int telefono;        
+        String telefono = txtTelefono.getText();
         String direccion = txtDireccion.getText();
-        
 
         try {
-            cedula = Integer.parseInt(txtIdCliente.getText());
-            telefono = Integer.parseInt(txtTelefono.getText());
-            idLibro = Integer.parseInt(txtIdLibro.getText());
 
+	    idLibro = Integer.parseInt(txtIdLibro.getText());
         } catch (Exception e){
             JOptionPane.showMessageDialog(null, "Algun valor es invalido");
             return;
         }
-        
+
         Libro libro = controllerLibro.buscarLibro(idLibro);
         Cliente cliente = new Cliente(cedula, nombre, telefono, direccion);
-        
+
         if (controller.agregarReserva(cliente, libro)){
             JOptionPane.showMessageDialog(null, "Registrado");
-            ReservasTable.setModel(controller.populateTable());            
+            ReservasTable.setModel(controller.populateTable());
         }
         else {
             JOptionPane.showMessageDialog(null, "No se pudo");
             return;
         }
-        
 
-        
     }//GEN-LAST:event_btnRegisterMachineMousePressed
 
     private void txtIdClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtIdClienteMouseClicked
@@ -877,15 +871,12 @@ public class ReservasFrame extends javax.swing.JFrame {
         if (respuesta != null){
             Cliente cliente = respuesta.getCliente();
             Libro libro = respuesta.getLibro();
-            
-            txtDireccion.setText(cliente.getDireccion());            
-            txtTelefono.setText(String.valueOf(cliente.getTelefono()));
-            txtIdCliente.setText(String.valueOf(cliente.getCedula()));
-            txtNombre.setText(cliente.getNombre());
-            
-            txtIdLibro.setText(String.valueOf(libro.getId()));
 
-            
+            txtDireccion.setText(cliente.getDireccion());
+            txtTelefono.setText(cliente.getTelefono());
+            txtIdCliente.setText(cliente.getCedula());
+            txtNombre.setText(cliente.getNombre());
+            txtIdLibro.setText(String.valueOf(libro.getId()));
 
         } else {
             JOptionPane.showMessageDialog(null, "No se Encontro");
