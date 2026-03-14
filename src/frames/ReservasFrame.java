@@ -32,7 +32,7 @@ public class ReservasFrame extends javax.swing.JFrame {
         controllerLibro = new LibroController();
         this.admin = admin;
         setData();
-        
+        ReservasTable.setModel(controller.populateTable());
     }
     private void setData(){
         txtName.setText(admin.getName());
