@@ -3,13 +3,13 @@ package model;
 import java.io.Serializable;
 
 public class Cliente implements Serializable {
-    private int cedula;
-    private String nombre; 
-    private int telefono;
+    private String cedula;
+    private String nombre;
+    private String telefono;
     private String direccion;
     private int estado;
 
-    public Cliente(int cedula, String nombre, int telefono, String direccion) {
+    public Cliente(String cedula, String nombre, String telefono, String direccion) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.telefono = telefono;
@@ -17,16 +17,16 @@ public class Cliente implements Serializable {
         this.estado = 0; // 0 libre | 1 con prestamo
     }
 
-    public int getCedula() {
+    public String getCedula() {
         return cedula;
     }
 
     public String getNombre() {
         return nombre;
     }
-    
 
-    public int getTelefono() {
+
+    public String getTelefono() {
         return telefono;
     }
 
@@ -38,13 +38,13 @@ public class Cliente implements Serializable {
         return estado;
     }
 
-    public void setCedula(int cedula) {
+    public void setCedula(String cedula) {
         this.cedula = cedula;
     }
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
     public void setDireccion(String direccion) {

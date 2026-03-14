@@ -1,7 +1,6 @@
 package controllers;
 
 import model.Libro;
-
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import resources.data.Persistencia;
@@ -57,13 +56,11 @@ public class LibroController {
         return false;
 
     }
-    
-     public DefaultTableModel populateTable(){
-        String[] columns = {"ID", "Titulo", "Autor", "Estado"};                
-        DefaultTableModel table = new DefaultTableModel(columns, 0);                           
-        
+
+   public DefaultTableModel populateTable(){
+        String[] columns = {"ID", "Titulo", "Autor", "Estado"};
+        DefaultTableModel table = new DefaultTableModel(columns, 0);
         for (Libro libro: listaLibros){
-            
             Object[] row = {
                 libro.getId(),
                 libro.getTitulo(),
@@ -72,7 +69,7 @@ public class LibroController {
             };
             table.addRow(row);
         }
-        return table;        
+        return table;
     }
 }
 
