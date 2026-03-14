@@ -64,7 +64,8 @@ public class ReservaController {
             Object[] row = {
                 reserva.getId(),
                 reserva.getCliente().getCedula(),
-                reserva.getLibro().getId()
+                reserva.getLibro().getId(),
+		reserva.getDate().toString()
             };
             table.addRow(row);
         }
