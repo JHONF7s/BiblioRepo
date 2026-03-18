@@ -46,33 +46,11 @@ public class LibroController {
         return null;
     }
 
-    public List<Libro> buscarPorTitulo(String titulo){
+    public List<Libro> busquedaFuzzy(String contenido){
         List<Libro> resultados = new ArrayList<>();
 
         for (Libro libros: this.listaLibros){
-            if (libros.getTitulo().toLowerCase().contains(titulo.toLowerCase())){
-                resultados.add(libros);
-            }
-        }
-        return resultados;
-    }
-
-    public List<Libro> buscarPorAutor(String autor){
-        List<Libro> resultados = new ArrayList<>();
-
-        for(Libro libros: this.listaLibros){
-            if(libros.getAutor().toLowerCase().contains(autor.toLowerCase())){
-                resultados.add(libros);
-            }
-        }
-        return resultados;
-    }
-
-    public List<Libro> buscarPorCategoria(String categoria){
-        List<Libro> resultados = new ArrayList<>();
-
-        for(Libro libros: this.listaLibros){
-            if(libros.getAutor().toLowerCase().contains(categoria.toLowerCase())){
+            if (libros.getTitulo().toLowerCase().contains(contenido.toLowerCase()) || libros.getAutor().toLowerCase().contains(contenido.toLowerCase()) || libros.getCategoria().toLowerCase().contains(contenido.toLowerCase())){
                 resultados.add(libros);
             }
         }
