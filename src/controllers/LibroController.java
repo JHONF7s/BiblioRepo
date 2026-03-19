@@ -42,6 +42,7 @@ public class LibroController {
             if (libros.getId() == idLibro){
                 return libros;
             }
+            
         }
         return null;
     }
