@@ -2,7 +2,11 @@ package model;
 
 import java.io.Serializable;
 
+<<<<<<< HEAD
 public class Libro implements Serializable {
+=======
+public class Libro implements Serializable{
+>>>>>>> d1bcc31d0294256c266b66dab33abb7ba04e3750
 
     private int id;
     private String titulo;

@@ -1,10 +1,15 @@
 package model;
+import java.io.Serializable;
 import model.Cliente;
 
 import java.time.LocalDateTime;
 import java.io.Serializable;
 
+<<<<<<< HEAD
 public class Reserva implements Serializable {
+=======
+public class Reserva implements Serializable{
+>>>>>>> d1bcc31d0294256c266b66dab33abb7ba04e3750
     private int id;
     private Cliente cliente;
     private Libro libro;
