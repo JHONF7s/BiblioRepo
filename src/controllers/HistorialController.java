@@ -1,0 +1,41 @@
+package controllers;
+
+import model.Reserva;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import resources.data.Persistencia;
+
+public class HistorialController {
+    private ArrayList<ArrayList<Libro>> historial;
+	private ArrayList<String> clientes;
+
+	public HistorialController(){
+		historial = Persistencia.getInstancia().getHistorial();
+		clientes = Persistencia.getInstancia().getClientes();
+	}
+
+	public void registrarHistorial(Reserva reserva){
+		String cedula = reserva.getCliente().getCedula();
+		int index = buscarCliente(cedula);
+		ArrayList<Libro> historialc = (index < historial.size()) ? historial.get(index) : new ArrayList<>();
+		historialc.add(reserva.getLibro());
+
+		if (!(index < historial.size()))
+			historial.add(historialc);
+	}
+
+	private int buscarCliente(String cedula){
+		for (int i = 0; i < clientes.size(); i++)
+			if (clientes.get(i).equals(cedula))
+				return i;
+
+		return clientes.size();
+	}
+
+	public ArrayList<Libro> historialPorCliente(String cedula){
+		int index = buscarCliente(cedula);
+		return (index < historial.size()) ? historial.get(index) : null;
+	}
+
+}
