@@ -23,6 +23,7 @@ public class UserDataFrame extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(this);
         controller = new HistorialController();
+        this.admin = admin;
         setData();
         
     }
@@ -65,6 +66,8 @@ public class UserDataFrame extends javax.swing.JFrame {
         ClienteTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
 
         background1.setBackground(new java.awt.Color(255, 255, 255));
         background1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());

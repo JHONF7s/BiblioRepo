@@ -694,50 +694,72 @@ public class LoginFrame extends javax.swing.JFrame {
 
     private void txtRankingMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtRankingMouseEntered
         // TODO add your handling code here:
+        btnRankingMouseEntered(evt);
     }//GEN-LAST:event_txtRankingMouseEntered
 
     private void txtRankingMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtRankingMouseExited
         // TODO add your handling code here:
+        btnRankingMouseExited(evt);
     }//GEN-LAST:event_txtRankingMouseExited
 
     private void txtRankingMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtRankingMousePressed
+
+        btnRankingMousePressed(evt);
         // TODO add your handling code here:
     }//GEN-LAST:event_txtRankingMousePressed
 
     private void btnRankingMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRankingMouseEntered
         // TODO add your handling code here:
+        btnRanking.setBackground(Color.black);
+        
+        
     }//GEN-LAST:event_btnRankingMouseEntered
 
     private void btnRankingMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRankingMouseExited
         // TODO add your handling code here:
+        btnRanking.setBackground(new Color(51, 103, 255));
+        
+        
     }//GEN-LAST:event_btnRankingMouseExited
 
     private void btnRankingMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRankingMousePressed
+        RankingFrame frame = new RankingFrame(admin);
+        frame.setVisible(true);
+        this.dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_btnRankingMousePressed
 
     private void txtUserDataMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUserDataMouseEntered
         // TODO add your handling code here:
+        btnUserDataMouseEntered(evt);
     }//GEN-LAST:event_txtUserDataMouseEntered
 
     private void txtUserDataMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUserDataMouseExited
         // TODO add your handling code here:
+        btnUserDataMouseExited(evt);
     }//GEN-LAST:event_txtUserDataMouseExited
 
     private void txtUserDataMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUserDataMousePressed
         // TODO add your handling code here:
+        btnUserDataMousePressed(evt);
     }//GEN-LAST:event_txtUserDataMousePressed
 
     private void btnUserDataMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUserDataMouseEntered
         // TODO add your handling code here:
+        btnUserData.setBackground(Color.black);
     }//GEN-LAST:event_btnUserDataMouseEntered
 
     private void btnUserDataMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUserDataMouseExited
         // TODO add your handling code here:
+         btnUserData.setBackground(new Color(51, 153, 255));
     }//GEN-LAST:event_btnUserDataMouseExited
 
     private void btnUserDataMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUserDataMousePressed
         // TODO add your handling code here:
+        UserDataFrame frame = new UserDataFrame(admin);
+        frame.setVisible(true);
+        this.dispose();
+        
     }//GEN-LAST:event_btnUserDataMousePressed
 
 
