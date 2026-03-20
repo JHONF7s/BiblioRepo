@@ -11,6 +11,7 @@ public class Libro implements Serializable{
     private int anoPublicacion;
     private String categoria;
     private int estado; // 0 = disponible, 1 = reservador, 2 = retirado
+    private int usos;
 
     public Libro (int id, String titulo, String autor, String editorial, int anoPublicacion, String categoria, int estado){
         this.id = id;
@@ -28,8 +29,17 @@ public class Libro implements Serializable{
     }
 
 
+    public int getUsos(){
+        return usos;
+    }
+    
+    public void incrementarUso(){
+        usos++;
+    }
 
-
+    public void decrementarUsos(){
+        usos--;
+    }
     public int getId() {
         return id;
     }

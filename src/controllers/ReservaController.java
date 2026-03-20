@@ -32,6 +32,7 @@ public class ReservaController {
             reserva.cancelar();
             boolean repuesta = reservas.remove(reserva);
             Persistencia.getInstancia().writeReservas();
+            Persistencia.getInstancia().writeLibros();
             return repuesta;
         }
         return false;
