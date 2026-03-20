@@ -17,17 +17,22 @@ import model.Reserva;
 public class Persistencia {
     private static final Persistencia Instance = new Persistencia();
 
-    ArrayList<Cliente> clientes;
+    ArrayList<String> clientes;
     ArrayList<Libro> libros;
     ArrayList<Reserva> reservas;
+    ArrayList<ArrayList<Libro>> historial;
     
     private Persistencia() {
         clientes = readClientes();
         reservas = readReservas();
         libros = readLibros();
+        historial = readHistorial();
     }
 
-    public ArrayList<Cliente> getClientes() {
+    public ArrayList<ArrayList<Libro>> getHistorial(){
+        return historial;
+    }
+    public ArrayList<String> getClientes() {
         return clientes;
     }
 
@@ -42,13 +47,13 @@ public class Persistencia {
     public static Persistencia getInstancia(){return Instance;}
     
     
-     private ArrayList<Cliente> readClientes(){
+     private ArrayList<String> readClientes(){
         try{
             FileInputStream file = new FileInputStream("src/resources/data/clientes.dat");
             ObjectInputStream reader = new ObjectInputStream(file);
-            return (ArrayList<Cliente>) reader.readObject();
+            return (ArrayList<String>) reader.readObject();
         } catch (Exception e){
-            return new ArrayList<Cliente>();
+            return new ArrayList<String>();
         }        
     }
      
@@ -69,6 +74,16 @@ public class Persistencia {
             return (ArrayList<Libro>) reader.readObject();
         } catch (Exception e){
             return new ArrayList<Libro>();
+        }        
+    }
+    
+    private ArrayList<ArrayList<Libro>> readHistorial(){
+        try{
+            FileInputStream file = new FileInputStream("src/resources/data/historial.dat");
+            ObjectInputStream reader = new ObjectInputStream(file);
+            return (ArrayList<ArrayList<Libro>>) reader.readObject();
+        } catch (Exception e){
+            return new ArrayList<ArrayList<Libro>>();
         }        
     }
     
@@ -98,6 +113,16 @@ public class Persistencia {
             FileOutputStream file = new FileOutputStream("src/resources/data/libros.dat");
             ObjectOutputStream writer = new ObjectOutputStream(file);
             writer.writeObject(libros);
+        } catch (Exception e){
+            e.printStackTrace();            
+        }        
+    }
+    
+    public void writeHistorial(){
+        try{
+            FileOutputStream file = new FileOutputStream("src/resources/data/historial.dat");
+            ObjectOutputStream writer = new ObjectOutputStream(file);
+            writer.writeObject(historial);
         } catch (Exception e){
             e.printStackTrace();            
         }        
