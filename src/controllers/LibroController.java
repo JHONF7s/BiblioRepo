@@ -66,7 +66,28 @@ public class LibroController {
             }
         }
         return false;
-
+    }
+    
+    public Libro[] librosMasUsados(){
+        Libro[] libros = new Libro[3];
+        int topU = 0;
+        int topD = 0;
+        int topT = 0;
+        
+        for (Libro libro: listaLibros)
+            if (libro.getUsos() > topU){
+                topU = libro.getUsos();
+                libros[0] = libro;
+            }
+            else if (libro.getUsos() > topD){
+                topD = libro.getUsos();
+                libros[1] = libro;
+            }
+            else if (libro.getUsos() > topT){
+                topT = libro.getUsos();
+                libros[2] = libro;
+            }
+        return libros; 
     }
 
    public DefaultTableModel populateTable(){
@@ -80,6 +101,24 @@ public class LibroController {
                 libro.getEstado()
             };
             table.addRow(row);
+        }
+        return table;
+    }
+   
+   public DefaultTableModel populateTableRanking(){
+        String[] columns = {"ID", "Titulo", "Autor", "Usos"};
+        Libro[] libros = librosMasUsados();
+        DefaultTableModel table = new DefaultTableModel(columns, 0);
+        for (Libro libro: libros){
+                if (libro != null){
+                Object[] row = {
+                    libro.getId(),
+                    libro.getTitulo(),
+                    libro.getAutor(),
+                    libro.getUsos()
+                };
+                table.addRow(row);
+            }
         }
         return table;
     }
