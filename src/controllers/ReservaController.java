@@ -3,15 +3,18 @@ package controllers;
 import model.Cliente;
 import model.Libro;
 import model.Reserva;
+import controllers.HistorialController;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import resources.data.Persistencia;
 
 public class ReservaController {
     private ArrayList<Reserva> reservas;
+    private HistorialController controller;
 
     public ReservaController() {
         this.reservas = (ArrayList<Reserva>) Persistencia.getInstancia().getReservas();
+        controller = new HistorialController();
     }
 
     public boolean agregarReserva(Cliente cliente, Libro libro){
@@ -20,7 +23,11 @@ public class ReservaController {
         if (libro.getEstado() == 0 && cliente.getEstado() == 0){
             Reserva reserva = new Reserva(cliente, libro);
             boolean respuesta = reservas.add(reserva);
+            libro.incrementarUso();
+            controller.registrarHistorial(reserva);
+            Persistencia.getInstancia().writeHistorial();
             Persistencia.getInstancia().writeReservas();
+            Persistencia.getInstancia().writeLibros();
             return respuesta;
         }
         return false;
@@ -29,8 +36,10 @@ public class ReservaController {
     public boolean eliminarReserva(int id){
         Reserva reserva = buscarReserva(id);
         if (reserva != null){
+            controller.quitarRegistro(reserva);
             reserva.cancelar();
             boolean repuesta = reservas.remove(reserva);
+            Persistencia.getInstancia().writeHistorial();
             Persistencia.getInstancia().writeReservas();
             Persistencia.getInstancia().writeLibros();
             return repuesta;

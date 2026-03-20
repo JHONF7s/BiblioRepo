@@ -105,8 +105,9 @@ public class LibroController {
         return table;
     }
    
-   public DefaultTableModel populateTable(Libro[] libros){
+   public DefaultTableModel populateTableRanking(){
         String[] columns = {"ID", "Titulo", "Autor", "Usos"};
+        Libro[] libros = librosMasUsados();
         DefaultTableModel table = new DefaultTableModel(columns, 0);
         for (Libro libro: libros){
                 if (libro != null){
