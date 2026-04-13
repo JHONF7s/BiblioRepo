@@ -1,6 +1,6 @@
-
 package resources.data;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
@@ -10,14 +10,18 @@ import model.Cliente;
 import model.Libro;
 import model.Reserva;
 
-/**
- *
- * @author jhnf
- */
 public class Persistencia {
     private static final Persistencia Instance = new Persistencia();
+    private static final String DATA_DIR = "data/";
 
-    ArrayList<String> clientes;
+    static {
+        File dir = new File(DATA_DIR);
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+    }
+
+    ArrayList<Cliente> clientes;
     ArrayList<Libro> libros;
     ArrayList<Reserva> reservas;
     ArrayList<ArrayList<Libro>> historial;
@@ -32,7 +36,7 @@ public class Persistencia {
     public ArrayList<ArrayList<Libro>> getHistorial(){
         return historial;
     }
-    public ArrayList<String> getClientes() {
+    public ArrayList<Cliente> getClientes() {
         return clientes;
     }
 
@@ -46,87 +50,68 @@ public class Persistencia {
     
     public static Persistencia getInstancia(){return Instance;}
     
-    
-     private ArrayList<String> readClientes(){
-        try{
-            FileInputStream file = new FileInputStream("src/resources/data/clientes.dat");
+    private Object readObject(String filename) {
+        try {
+            FileInputStream file = new FileInputStream(DATA_DIR + filename);
             ObjectInputStream reader = new ObjectInputStream(file);
-            return (ArrayList<String>) reader.readObject();
-        } catch (Exception e){
-            return new ArrayList<String>();
-        }        
+            Object obj = reader.readObject();
+            reader.close();
+            return obj;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    private void writeObject(Object obj, String filename) {
+        try {
+            FileOutputStream file = new FileOutputStream(DATA_DIR + filename);
+            ObjectOutputStream writer = new ObjectOutputStream(file);
+            writer.writeObject(obj);
+            writer.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private ArrayList<Cliente> readClientes(){
+        Object obj = readObject("clientes.dat");
+        if (obj instanceof ArrayList) {
+            ArrayList list = (ArrayList) obj;
+            if (!list.isEmpty() && list.get(0) instanceof String) {
+                // Migración de String a Cliente
+                ArrayList<Cliente> newList = new ArrayList<>();
+                for (Object s : list) {
+                    String[] parts = ((String) s).split(",");
+                    if (parts.length >= 4) {
+                        Cliente c = new Cliente(parts[0], parts[1], parts[2], parts[3]);
+                        if (parts.length > 4) c.setEstado(Integer.parseInt(parts[4]));
+                        newList.add(c);
+                    }
+                }
+                return newList;
+            }
+            return (ArrayList<Cliente>) obj;
+        }
+        return new ArrayList<Cliente>();
     }
      
-      private ArrayList<Reserva> readReservas(){
-        try{
-            FileInputStream file = new FileInputStream("src/resources/data/reservas.dat");
-            ObjectInputStream reader = new ObjectInputStream(file);
-            return (ArrayList<Reserva>) reader.readObject();
-        } catch (Exception e){
-            return new ArrayList<Reserva>();
-        }        
+    private ArrayList<Reserva> readReservas(){
+        Object obj = readObject("reservas.dat");
+        return obj != null ? (ArrayList<Reserva>) obj : new ArrayList<Reserva>();
     }
       
     private ArrayList<Libro> readLibros(){
-        try{
-            FileInputStream file = new FileInputStream("src/resources/data/libros.dat");
-            ObjectInputStream reader = new ObjectInputStream(file);
-            return (ArrayList<Libro>) reader.readObject();
-        } catch (Exception e){
-            return new ArrayList<Libro>();
-        }        
+        Object obj = readObject("libros.dat");
+        return obj != null ? (ArrayList<Libro>) obj : new ArrayList<Libro>();
     }
     
     private ArrayList<ArrayList<Libro>> readHistorial(){
-        try{
-            FileInputStream file = new FileInputStream("src/resources/data/historial.dat");
-            ObjectInputStream reader = new ObjectInputStream(file);
-            return (ArrayList<ArrayList<Libro>>) reader.readObject();
-        } catch (Exception e){
-            return new ArrayList<ArrayList<Libro>>();
-        }        
+        Object obj = readObject("historial.dat");
+        return obj != null ? (ArrayList<ArrayList<Libro>>) obj : new ArrayList<ArrayList<Libro>>();
     }
-    
      
-    public void writeClientes(){
-        try{
-            FileOutputStream file = new FileOutputStream("src/resources/data/clientes.dat");
-            ObjectOutputStream writer = new ObjectOutputStream(file);
-            writer.writeObject(clientes);
-        } catch (Exception e){
-            //e.printStackTrace();            
-        }        
-    }
-    
-    public void writeReservas(){
-        try{
-            FileOutputStream file = new FileOutputStream("src/resources/data/reservas.dat");
-            ObjectOutputStream writer = new ObjectOutputStream(file);
-            writer.writeObject(reservas);
-        } catch (Exception e){
-            //e.printStackTrace();            
-        }        
-    }
-    
-    public void writeLibros(){
-        try{
-            FileOutputStream file = new FileOutputStream("src/resources/data/libros.dat");
-            ObjectOutputStream writer = new ObjectOutputStream(file);
-            writer.writeObject(libros);
-        } catch (Exception e){
-            e.printStackTrace();            
-        }        
-    }
-    
-    public void writeHistorial(){
-        try{
-            FileOutputStream file = new FileOutputStream("src/resources/data/historial.dat");
-            ObjectOutputStream writer = new ObjectOutputStream(file);
-            writer.writeObject(historial);
-        } catch (Exception e){
-            e.printStackTrace();            
-        }        
-    }
-    
-    
+    public void writeClientes(){ writeObject(clientes, "clientes.dat"); }
+    public void writeReservas(){ writeObject(reservas, "reservas.dat"); }
+    public void writeLibros(){ writeObject(libros, "libros.dat"); }
+    public void writeHistorial(){ writeObject(historial, "historial.dat"); }
 }

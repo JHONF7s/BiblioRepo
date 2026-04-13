@@ -8,6 +8,7 @@ public class Cliente implements Serializable {
     private String telefono;
     private String direccion;
     private int estado;
+    private double multas;
 
     public Cliente(String cedula, String nombre, String telefono, String direccion) {
         this.cedula = cedula;
@@ -15,6 +16,19 @@ public class Cliente implements Serializable {
         this.telefono = telefono;
         this.direccion = direccion;
         this.estado = 0; // 0 libre | 1 con prestamo
+        this.multas = 0.0;
+    }
+
+    public double getMultas() {
+        return multas;
+    }
+
+    public void setMultas(double multas) {
+        this.multas = multas;
+    }
+
+    public void agregarMulta(double monto) {
+        this.multas += monto;
     }
 
     public String getCedula() {

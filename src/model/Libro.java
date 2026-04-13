@@ -2,6 +2,9 @@ package model;
 
 import java.io.Serializable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Libro implements Serializable{
 
     private int id;
@@ -10,8 +13,9 @@ public class Libro implements Serializable{
     private String editorial;
     private int anoPublicacion;
     private String categoria;
-    private int estado; // 0 = disponible, 1 = reservador, 2 = retirado
+    private int estado; // 0 = disponible, 1 = reservado, 2 = retirado
     private int usos;
+    private List<Cliente> listaEspera;
 
     public Libro (int id, String titulo, String autor, String editorial, int anoPublicacion, String categoria, int estado){
         this.id = id;
@@ -21,6 +25,21 @@ public class Libro implements Serializable{
         this.anoPublicacion = anoPublicacion;
         this.categoria = categoria;
         this.estado = estado;
+        this.listaEspera = new ArrayList<>();
+    }
+
+    public List<Cliente> getListaEspera() {
+        if (listaEspera == null) listaEspera = new ArrayList<>();
+        return listaEspera;
+    }
+
+    public void agregarAListaEspera(Cliente cliente) {
+        getListaEspera().add(cliente);
+    }
+
+    public Cliente siguienteEnEspera() {
+        if (getListaEspera().isEmpty()) return null;
+        return getListaEspera().remove(0);
     }
 
     public void cambiarEstado(int estado){
