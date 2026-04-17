@@ -22,16 +22,20 @@ public class ReporteController {
 
     public String generarReporteGeneral() {
         StringBuilder sb = new StringBuilder();
-        sb.append("=== REPORTE GENERAL DEL SISTEMA ===\n");
-        sb.append("Total de libros registrados: ").append(libros.size()).append("\n");
-        sb.append("Total de clientes registrados: ").append(clientes.size()).append("\n");
-        sb.append("Préstamos activos: ").append(reservas.size()).append("\n");
+        sb.append("\n====================================\n");
+        sb.append("   REPORTE GENERAL DEL SISTEMA\n");
+        sb.append("====================================\n");
+        sb.append(String.format("%-30s: %d\n", "Total de libros registrados", libros.size()));
+        sb.append(String.format("%-30s: %d\n", "Total de clientes registrados", clientes.size()));
+        sb.append(String.format("%-30s: %d\n", "Préstamos activos", reservas.size()));
         
         int totalHistorico = 0;
         for (ArrayList<Libro> h : historial) {
             totalHistorico += h.size();
         }
-        sb.append("Total préstamos históricos: ").append(totalHistorico).append("\n");
+        sb.append(String.format("%-30s: %d\n", "Total préstamos históricos", totalHistorico));
+
+        sb.append("------------------------------------\n");
 
         // Cliente con mayor número de préstamos
         Cliente topCliente = null;
@@ -43,24 +47,31 @@ public class ReporteController {
                 topCliente = clientes.get(i);
             }
         }
-        if (topCliente != null) {
-            sb.append("Cliente con más préstamos: ").append(topCliente.getNombre()).append(" (").append(maxPrestamos).append(")\n");
+        if (topCliente != null && maxPrestamos > 0) {
+            sb.append(String.format("Cliente con más préstamos: %s (%d)\n", topCliente.getNombre(), maxPrestamos));
+        } else {
+            sb.append("Cliente con más préstamos: N/A\n");
         }
 
         // Libro menos solicitado
         Libro leastLibro = null;
         int minUsos = Integer.MAX_VALUE;
-        for (Libro l : libros) {
-            if (l.getUsos() < minUsos) {
-                minUsos = l.getUsos();
-                leastLibro = l;
+        if (!libros.isEmpty()) {
+            for (Libro l : libros) {
+                if (l.getUsos() < minUsos) {
+                    minUsos = l.getUsos();
+                    leastLibro = l;
+                }
             }
         }
+        
         if (leastLibro != null) {
-            sb.append("Libro menos solicitado: ").append(leastLibro.getTitulo()).append(" (").append(minUsos).append(" usos)\n");
+            sb.append(String.format("Libro menos solicitado: %s (%d usos)\n", leastLibro.getTitulo(), minUsos));
+        } else {
+            sb.append("Libro menos solicitado: N/A\n");
         }
         
-        sb.append("====================================");
+        sb.append("====================================\n");
         return sb.toString();
     }
 }

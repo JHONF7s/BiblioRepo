@@ -7,7 +7,6 @@ import controllers.HistorialController;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import javax.swing.table.DefaultTableModel;
 import resources.data.Persistencia;
 
 public class ReservaController {
@@ -112,21 +111,5 @@ public class ReservaController {
             if (reserva.getId() == id)
                 return reserva;
         return null;
-    }
-
-    public DefaultTableModel populateTable(){
-        String[] columns = {"ID", "Cliente", "Libro", "Vence", "Estado"};
-        DefaultTableModel table = new DefaultTableModel(columns, 0);
-        for (Reserva reserva: reservas){
-            Object[] row = {
-                reserva.getId(),
-                reserva.getCliente().getCedula(),
-                reserva.getLibro().getId(),
-                reserva.getFechaLimite().toString(),
-                reserva.getLibro().getEstado()
-            };
-            table.addRow(row);
-        }
-        return table;
     }
 }

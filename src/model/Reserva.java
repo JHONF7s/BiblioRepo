@@ -61,7 +61,6 @@ public class Reserva implements Serializable{
     public void cancelar(){
         cliente.setEstado(0);
         libro.setEstado(0);
-        libro.decrementarUsos();
         cliente = null;
         libro = null;
         date = null;

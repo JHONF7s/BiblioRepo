@@ -5,7 +5,6 @@ import model.Libro;
 import model.Cliente;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.table.DefaultTableModel;
 import resources.data.Persistencia;
 
 public class HistorialController {
@@ -45,21 +44,5 @@ public class HistorialController {
     public ArrayList<Libro> historialPorCliente(String cedula){
             int index = buscarClienteIndex(cedula);
             return (index < historial.size()) ? historial.get(index) : new ArrayList<>();
-    }
-    
-    public DefaultTableModel populateTable(String cedula){
-        String[] columns = {"ID", "Titulo"};
-        DefaultTableModel table = new DefaultTableModel(columns, 0);
-        ArrayList<Libro> libros = historialPorCliente(cedula);
-        if (libros != null) {
-            for (Libro libro: libros){
-                Object[] row = {
-                    libro.getId(),
-                    libro.getTitulo(),
-                };
-                table.addRow(row);
-            }
-        }
-        return table;
     }
 }

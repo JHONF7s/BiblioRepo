@@ -3,7 +3,6 @@ package controllers;
 import model.Libro;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.table.DefaultTableModel;
 import resources.data.Persistencia;
 
 public class LibroController {
@@ -88,39 +87,6 @@ public class LibroController {
                 libros[2] = libro;
             }
         return libros; 
-    }
-
-   public DefaultTableModel populateTable(){
-        String[] columns = {"ID", "Titulo", "Autor", "Estado"};
-        DefaultTableModel table = new DefaultTableModel(columns, 0);
-        for (Libro libro: listaLibros){
-            Object[] row = {
-                libro.getId(),
-                libro.getTitulo(),
-                libro.getAutor(),
-                libro.getEstado()
-            };
-            table.addRow(row);
-        }
-        return table;
-    }
-   
-   public DefaultTableModel populateTableRanking(){
-        String[] columns = {"ID", "Titulo", "Autor", "Usos"};
-        Libro[] libros = librosMasUsados();
-        DefaultTableModel table = new DefaultTableModel(columns, 0);
-        for (Libro libro: libros){
-                if (libro != null){
-                Object[] row = {
-                    libro.getId(),
-                    libro.getTitulo(),
-                    libro.getAutor(),
-                    libro.getUsos()
-                };
-                table.addRow(row);
-            }
-        }
-        return table;
     }
 }
 
