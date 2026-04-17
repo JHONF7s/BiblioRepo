@@ -1,14 +1,23 @@
 FROM eclipse-temurin:17-jdk
 
-# Establecer el directorio de trabajo dentro del contenedor
+# Establecer el directorio de trabajo para el código
 WORKDIR /app
 
-# Copiar el código fuente y las librerías al contenedor
+# Copiar el código fuente y las librerías
 COPY src/ /app/src/
 COPY lib/ /app/lib/
 
-# Compilar todos los archivos Java incluyendo la librería en el classpath (usando : como separador en Linux)
-RUN mkdir -p /app/out && javac -cp "/app/lib/*" -d /app/out $(find /app/src -name "*.java")
+# Crear directorios necesarios
+# Se crea /data en la raíz para evitar confusiones de rutas relativas
+# Se crea /app/out para los binarios
+RUN mkdir -p /data /app/out && chmod 777 /data
 
-# Ejecutar la clase Main incluyendo los binarios y la librería en el classpath
+# Compilar todos los archivos Java
+RUN javac -cp "/app/lib/*" -d /app/out $(find /app/src -name "*.java")
+
+# Declarar el volumen de datos (donde persistirá la info)
+VOLUME /data
+
+# Ejecutar la aplicación
+# Definimos el classpath incluyendo /app/out y las librerías
 CMD ["java", "-cp", "/app/out:/app/lib/*", "Main"]

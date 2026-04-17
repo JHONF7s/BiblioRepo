@@ -9,11 +9,21 @@ public class Reserva implements Serializable{
     private Cliente cliente;
     private Libro libro;
     private LocalDateTime date;
+    private LocalDateTime fechaLimite;
 
     public Reserva(Cliente cliente, Libro libro){
         this.cliente = cliente;
         this.libro = libro;
-        date = LocalDateTime.now();
+        this.date = LocalDateTime.now();
+        this.fechaLimite = this.date.plusDays(7);
+    }
+
+    public LocalDateTime getFechaLimite() {
+        return fechaLimite;
+    }
+
+    public void setFechaLimite(LocalDateTime fechaLimite) {
+        this.fechaLimite = fechaLimite;
     }
 
     public int getId() {

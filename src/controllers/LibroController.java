@@ -91,13 +91,16 @@ public class LibroController {
     }
 
    public DefaultTableModel populateTable(){
-        String[] columns = {"ID", "Titulo", "Autor", "Estado"};
+        String[] columns = {"ID", "Titulo", "Autor", "Editorial", "Año", "Categoria", "Estado"};
         DefaultTableModel table = new DefaultTableModel(columns, 0);
         for (Libro libro: listaLibros){
             Object[] row = {
                 libro.getId(),
                 libro.getTitulo(),
                 libro.getAutor(),
+                libro.getEditorial(),
+                libro.getAnoPublicacion(),
+                libro.getCategoria(),
                 libro.getEstado()
             };
             table.addRow(row);
